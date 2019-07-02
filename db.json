@@ -13,6 +13,13 @@
         "age": "28",
         "gender": "male",
         "ocupation": "Chef"
+    },    
+    {
+        "id":2,
+        "name": "Nallely",
+        "age": "18",
+        "gender": "womer",
+        "ocupation": "programer"
     }
 ]
 }

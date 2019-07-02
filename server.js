@@ -2,14 +2,15 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const db = require("./db.json");
+const cors = require("cors");
 
 app.listen(port, function(){
     console.log("inicia servidor en el puerto "+ port);
     console.log("http://localhost:"+port);
 });
 
+app.use(cors());
 app.use(express.json());
-
 app.get('/',getUserGeneral); // obtener algo get en general
 app.get('/:id',getUserEspecial); //obtener un id en particular
 // app.put("/",editUserInfo); put general
@@ -29,18 +30,28 @@ function getUserGeneral(request, response){
 function getUserEspecial(request, response){
     const id = request.params.id;
     const userSelect = db.userList[id];
-
         if(userSelect){
-            response.send(userSelect);
-            
+            response.status(200).send(userSelect);         
         }else {
             response.status(409).send({ error: 'Usuario No Encontrado' });   
         }    
+
+        /*for(let i = 0; i< db.userList.length; i++){
+            if(db.userList[i].id == id){
+                response.send(userSelect);  
+            }
+        }*/
 }
 
 function editUserInfo(request, response){
     const id = request.params.id;
-    const userToUpdate = db.userList[id];
+    const userToUpdate = "";
+
+    for(let i = 0; i< db.userList.length; i++){
+        if(db.userList[i].id == id){
+            userToUpdate = db.userList[i];
+        }
+    }
 
     if(request.body.name){
         const newName = request.body.name;
@@ -58,7 +69,7 @@ function editUserInfo(request, response){
         const newOcupation = request.body.ocupation;
         userToUpdate.ocupation = newOcupation;    
     }
-    response.send(db);
+    response.status(200).send(db);
 }
 
 function createUser(request, response){
