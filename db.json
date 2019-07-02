@@ -1,6 +1,18 @@
 {
-    "name": "Juan",
-    "age": "18",
-    "gender": "male",
-    "ocupation": "rocket man"
+"userList":[
+    {
+        "id":0,
+        "name": "Juan",
+        "age": "18",
+        "gender": "male",
+        "ocupation": "rocket man"
+    },    
+    {
+        "id":1,
+        "name": "Mijael",
+        "age": "28",
+        "gender": "male",
+        "ocupation": "Chef"
+    }
+]
 }
